@@ -67,5 +67,5 @@ jobs:
           python upload_model.py
         env:
           MODELSCOPE_ACCESS_TOKEN: ${{ secrets.MODELSCOPE_ACCESS_TOKEN }}
-          MODELSCOPE_MODEL_ID: moxying/git-portable-win.zip
+          MODELSCOPE_MODEL_ID: moxying/base-git-model
           MODELSCOPE_MODEL_DIR: model-template
