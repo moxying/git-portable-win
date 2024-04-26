@@ -34,3 +34,39 @@ jobs:
         env:
           GITCODE_REPOSITORY: moxying/git-portable-win
           GITCODE_ACCESS_TOKEN: ${{ secrets.GITCODE_ACCESS_TOKEN}}
+
+      - name: "checkout mox"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: moxying/mox
+          path: mox
+
+      - name: "package git"
+        shell: bash
+        run: |
+          ls
+          pwd
+          zip git-portable-win/* git-portable-win.zip
+
+      - name: "prepare python 3.10"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip" # caching pip dependencies
+      - name: "upload model to modelscope"
+        shell: bash
+        run: |
+          pwd
+          ls
+          pip install modelscope
+
+          # ha ha ha ..
+          mv mox/tools/modelscope .
+          mv git-portable-win.zip modelscope/model-template/
+          cd modelscope
+          python upload_model.py
+        env:
+          MODELSCOPE_ACCESS_TOKEN: ${{ secrets.MODELSCOPE_ACCESS_TOKEN }}
+          MODELSCOPE_MODEL_ID: moxying/git-portable-win.zip
+          MODELSCOPE_MODEL_DIR: model-template
