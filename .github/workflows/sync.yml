@@ -62,7 +62,7 @@ jobs:
           pip install modelscope
 
           # ha ha ha ..
-          mv git-portable-win/modelscope .
+          mv git-portable-win/.github/modelscope .
           mv git-portable-win.zip modelscope/model-template/
           cd modelscope
           python upload_model.py
