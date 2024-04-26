@@ -48,7 +48,7 @@ jobs:
           cd ..
           ls
           pwd
-          zip git-portable-win/* git-portable-win.zip
+          zip -r git-portable-win.zip git-portable-win/*
 
       - name: "prepare python 3.10"
         uses: actions/setup-python@v5
