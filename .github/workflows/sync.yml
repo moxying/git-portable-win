@@ -45,6 +45,7 @@ jobs:
       - name: "package git"
         shell: bash
         run: |
+          cd ..
           ls
           pwd
           zip git-portable-win/* git-portable-win.zip
